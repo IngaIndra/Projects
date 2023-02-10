@@ -1,0 +1,10 @@
+[
+  {
+    "id": 1,
+    "name": "Home",
+    "link": "/",
+    "target": "_self",
+    "positionId": 1,
+    "ordering": 0
+  }
+]
