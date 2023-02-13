@@ -1,4 +1,4 @@
-import { SlPencil, SlTrash } from 'react-icons/sl';
+import { SlPencil, SlTrash } from "react-icons/sl";
 
 const ListItem = ({ item, index }) => {
   return (
@@ -6,7 +6,7 @@ const ListItem = ({ item, index }) => {
       <th scope="row">{index}</th>
       <td>{item.name}</td>
       <td>{item.description}</td>
-      <td style={{ whiteSpace: 'nowrap' }}>
+      <td style={{ whiteSpace: "nowrap" }}>
         <button className="btn btn-sm btn-outline-primary me-2">
           <SlPencil />
         </button>
@@ -20,9 +20,9 @@ const ListItem = ({ item, index }) => {
 
 export default function PostList() {
   const items = [
-    { name: 'How to become', description: '...' },
-    { name: 'You should', description: '...' },
-    { name: 'Entire class is', description: '...' },
+    { name: "How to become", description: "..." },
+    { name: "You should", description: "..." },
+    { name: "Entire class is", description: "..." },
   ];
   return (
     <table className="table table-bordered table-hover">

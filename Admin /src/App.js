@@ -15,8 +15,8 @@ import MenuPositions from "./pages/MenuPositions";
 import Menus from "./pages/Menus";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import DynamicModal from "./components/utils/DynamicModal";
 import { ModalProvider } from "./contexts/ModalContext";
+import OpenAi from "./pages/OpenAi";
 
 export default function App() {
   const [menuShow, setMenuShow] = useState(false);
@@ -73,6 +73,7 @@ export default function App() {
             <Route path="/menu-positions/:id" element={<Menus />} />
             <Route path="/categories" element={<Categories />} />
             <Route path="/articles" element={<Articles />} />
+            <Route path="/openai" element={<OpenAi />} />
             {/* <Route path="/signout" element={<Signout setMe={setMe} />} /> */}
           </Routes>
         </div>

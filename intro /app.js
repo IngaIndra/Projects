@@ -2,12 +2,25 @@ const express = require("express"); //require=import
 const cors = require("cors"); //security
 const fs = require("fs");
 
-const app = express();
-app.use(cors());
+const dotenv = require("dotenv");
+dotenv.config();
 
-const port = 8000;
+const openaiPackage = require("openai");
+
+const configuration = new openaiPackage.Configuration({
+  apiKey: process.env.OPENAI_API_KEY,
+});
+const openai = new openaiPackage.OpenAIApi(configuration);
+
+const app = express();
+
+app.use(cors());
+app.use(express.json());
+
+const port = process.env.PORT || 8000;
 
 let categories = JSON.parse(fs.readFileSync("categoryData.json", "utf-8"));
+
 let nextCatId = categories.length;
 
 const updateCategories = () => {
@@ -180,6 +193,21 @@ app.delete("/menus/:id", (req, res) => {
   res.json(id);
 });
 
-app.listen(port, () => {
+app.get("/generate", async (req, res) => {
+  const response = await openai.createImage({
+    prompt:
+      "high resolution photo of a corgi with an astronaut suit, sitting on the moon while eating cheese",
+    n: 1,
+    size: "256x256",
+  });
+  const { prompt } = req.query;
+
+  image_url = response.data.data[0].url;
+  res.json(image_url);
+});
+
+app.listen(port, async () => {
   console.log("http://localhost:" + port);
+  const response = await openai.listEngines();
+  console.log(response);
 });
