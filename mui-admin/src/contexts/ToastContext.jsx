@@ -1,7 +1,7 @@
 import { Snackbar, Alert } from "@mui/material";
 import { createContext, useState } from "react";
 
-export const ToastContext = createContext(null);
+export const ToastContext = createContext({});
 
 export const ToastProvider = ({ children }) => {
   const [open, setOpen] = useState(false);

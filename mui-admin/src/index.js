@@ -3,13 +3,15 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import { BrowserRouter } from "react-router-dom";
-import { ToastProvider } from "./contexts";
+import { DialogProvider, ToastProvider } from "./contexts";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <BrowserRouter>
     <ToastProvider>
-      <App />
+      <DialogProvider>
+        <App />
+      </DialogProvider>
     </ToastProvider>
   </BrowserRouter>
 );
