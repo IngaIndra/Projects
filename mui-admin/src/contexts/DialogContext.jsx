@@ -13,6 +13,8 @@ export const DialogContext = createContext(null);
 export const DialogProvider = ({ children }) => {
   const showToast = useToast();
   const [open, setOpen] = useState(false);
+  const [text, setText] = useState("");
+  const [title, setTitle] = useState("");
   const handleClose = () => {
     setOpen(false);
   };
