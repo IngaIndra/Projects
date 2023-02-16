@@ -1,6 +1,7 @@
 const express = require("express"); //require=import
 const cors = require("cors"); //security
 const fs = require("fs");
+const shortid = require("shortid");
 
 // const dotenv = require("dotenv");
 // dotenv.config();
@@ -20,8 +21,6 @@ app.use(express.json());
 const port = process.env.PORT || 8000;
 
 let categories = JSON.parse(fs.readFileSync("categoryData.json", "utf-8"));
-
-let nextCatId = categories.length;
 
 const updateCategories = () => {
   fs.writeFileSync("categoryData.json", JSON.stringify(categories));
@@ -61,8 +60,9 @@ const jsonParser = bodyParser.json();
 
 app.post("/categories", jsonParser, (req, res) => {
   const { name } = req.body;
-  const newCategory = { id: nextCatId++, name };
+  const newCategory = { id: shortid.generate(), name };
   categories.push(newCategory);
+  updateCategories();
   res.json(newCategory);
 });
 
@@ -73,13 +73,13 @@ app.put("/categories/:id", jsonParser, (req, res) => {
   let updatedCat;
   categories = categories.map((row) => {
     console.log("aaa");
-    if (row.id === Number(id)) {
-      updatedCat = { id: Number(id), name };
+    if (row.id === id) {
+      updatedCat = { id: id, name };
       return updatedCat;
     }
     return row;
   });
-  updateCategoriesFile();
+  updateCategories();
   res.json(updatedCat);
 });
 

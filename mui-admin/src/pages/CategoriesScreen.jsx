@@ -13,33 +13,7 @@ import { DataGrid } from "@mui/x-data-grid";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link as RouterLink } from "react-router-dom";
-
-const columns = [
-  { field: "id", headerName: "#", width: 50 },
-  { field: "name", headerName: "Name", flex: 1 },
-  {
-    field: "",
-    headerName: "Actions",
-    width: 100,
-    sortable: false,
-    filterable: false,
-    headerAlign: "center",
-    renderCell: (params) => (
-      <Stack sx={{ flexDirection: "row" }}>
-        <Tooltip title="Edit">
-          <IconButton aria-label="edit" color="primary">
-            <Edit fontSize="inherit" />
-          </IconButton>
-        </Tooltip>
-        <Tooltip title="Delete">
-          <IconButton aria-label="delete" color="secondary">
-            <Delete fontSize="inherit" />
-          </IconButton>
-        </Tooltip>
-      </Stack>
-    ),
-  },
-];
+import { useToast } from "../hooks";
 
 const breadCrumbs = [
   {
@@ -55,12 +29,63 @@ const breadCrumbs = [
 export const CategoriesScreen = () => {
   const [categories, setCategories] = useState([]);
   const [pageSize, setPageSize] = useState(10);
+  const showToast = useToast();
 
   useEffect(() => {
     axios.get("http://localhost:8000/categories").then((res) => {
       setCategories(res.data);
     });
   }, []);
+
+  const deleteItem = (id) => {
+    axios
+      .delete("http://localhost:8000/categories/" + id)
+      .then((res) => {
+        showToast("Amjilttai ustgalaa");
+        setCategories(categories.filter((cat) => cat.id !== id));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const columns = [
+    {
+      field: "id",
+      headerName: "#",
+      width: 50,
+      renderCell: (params) => params.api.getRowIndex(params.row.id) + 1,
+    },
+    { field: "name", headerName: "Name", flex: 1 },
+    {
+      field: "",
+      headerName: "Actions",
+      width: 100,
+      sortable: false,
+      filterable: false,
+      headerAlign: "center",
+      renderCell: (params) => (
+        <Stack sx={{ flexDirection: "row" }}>
+          <Tooltip title="Edit">
+            <IconButton aria-label="edit" color="primary">
+              <Edit fontSize="inherit" />
+            </IconButton>
+          </Tooltip>
+          <Tooltip title="Delete">
+            <IconButton
+              aria-label="delete"
+              color="secondary"
+              onClick={() => {
+                deleteItem(params.row.id);
+              }}
+            >
+              <Delete fontSize="inherit" />
+            </IconButton>
+          </Tooltip>
+        </Stack>
+      ),
+    },
+  ];
 
   return (
     <>

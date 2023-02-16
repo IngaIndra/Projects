@@ -1,12 +1,12 @@
 import { Home } from "@mui/icons-material";
 import { Button, TextField, Typography } from "@mui/material";
-import { Box, Stack, width } from "@mui/system";
+import { Box, Stack } from "@mui/system";
 import axios from "axios";
 import { useEffect } from "react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { BreadCrumbs } from "../components";
-import { useDialog } from "../hooks/useDialog";
+import { useToast } from "../hooks";
 
 const breadCrumbs = [
   {
@@ -24,16 +24,15 @@ const breadCrumbs = [
 ];
 
 export const NewCategoriesScreen = () => {
-  const showDialog = useDialog();
-  const [newCategories, setNewCategories] = useState([]);
+  const showToast = useToast();
+  const [name, setName] = useState("");
   const navigate = useNavigate("");
 
-  useEffect(() => {
-    axios.get("http://localhost:8000/categories/new").then((res) => {
-      setNewCategories(res.data);
+  const submit = () => {
+    axios.post("http://localhost:8000/categories", { name }).then((res) => {
+      showToast();
     });
-  }, []);
-
+  };
   return (
     <>
       <BreadCrumbs items={breadCrumbs} />
@@ -55,22 +54,31 @@ export const NewCategoriesScreen = () => {
             id="outlined-basic"
             label="Category name"
             variant="outlined"
-            onChange={() => {}}
+            value={name}
+            onChange={(e) => {
+              setName(e.target.value);
+            }}
           />
         </Stack>
         <Stack direction="row" spacing={2}>
           <Button
             variant="contained"
-            onClick={(e) => {
-              e.preventDefault();
-              showDialog();
-              //   navigate("/categories");
+            onClick={() => {
+              submit();
+              navigate("/categories");
             }}
           >
             Save
           </Button>
           <Button variant="outlined">Reset</Button>
-          <Button variant="outlined">Cancel</Button>
+          <Button
+            variant="outlined"
+            onClick={() => {
+              navigate("/categories");
+            }}
+          >
+            Cancel
+          </Button>
         </Stack>
       </Stack>
     </>
