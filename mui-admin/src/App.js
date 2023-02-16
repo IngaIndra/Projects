@@ -17,7 +17,7 @@ const wrapperStyle = {
 };
 
 function App() {
-  // const showDialog = useDialog();
+  const showDialog = useDialog();
   return (
     <Layout>
       <Stack sx={wrapperStyle}>

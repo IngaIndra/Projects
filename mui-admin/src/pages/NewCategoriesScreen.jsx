@@ -4,8 +4,9 @@ import { Box, Stack, width } from "@mui/system";
 import axios from "axios";
 import { useEffect } from "react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { BreadCrumbs } from "../components";
+import { useDialog } from "../hooks/useDialog";
 
 const breadCrumbs = [
   {
@@ -23,7 +24,9 @@ const breadCrumbs = [
 ];
 
 export const NewCategoriesScreen = () => {
+  const showDialog = useDialog();
   const [newCategories, setNewCategories] = useState([]);
+  const navigate = useNavigate("");
 
   useEffect(() => {
     axios.get("http://localhost:8000/categories/new").then((res) => {
@@ -52,10 +55,20 @@ export const NewCategoriesScreen = () => {
             id="outlined-basic"
             label="Category name"
             variant="outlined"
+            onChange={() => {}}
           />
         </Stack>
         <Stack direction="row" spacing={2}>
-          <Button variant="contained">Save</Button>
+          <Button
+            variant="contained"
+            onClick={(e) => {
+              e.preventDefault();
+              showDialog();
+              //   navigate("/categories");
+            }}
+          >
+            Save
+          </Button>
           <Button variant="outlined">Reset</Button>
           <Button variant="outlined">Cancel</Button>
         </Stack>
