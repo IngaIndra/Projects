@@ -8,7 +8,9 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
+import { useState } from "react";
 import { Bar } from "react-chartjs-2";
+
 import { DemoClassComponent } from "../components/DemoClassComponent";
 
 ChartJS.register(
@@ -58,6 +60,8 @@ export const data = {
 };
 
 export default function Home() {
+  const [buttonShown, setButtonShown] = useState(true);
+
   return (
     <div className="container-sm body-container">
       <div className="row">
@@ -65,7 +69,9 @@ export default function Home() {
           <Bar options={options} data={data} />
         </div>
         <div className="col-6">
-          <DemoClassComponent />
+          {buttonShown && (
+            <DemoClassComponent setButtonShown={setButtonShown} />
+          )}
         </div>
       </div>
     </div>
