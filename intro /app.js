@@ -22,57 +22,58 @@ const port = process.env.PORT || 8000;
 
 let categories = JSON.parse(fs.readFileSync("categoryData.json", "utf-8"));
 
-console.log('categories',categories);
+console.log("categories", categories);
 // javascript code -g C, C++
-// API localhost:8000/api/categories ruu handval nadaa baigaa baigaa catery giin jagsaaltiig uzuulne. 
-// express - Third party library 
-// fs, http - in builth library
+// API localhost:8000/api/categories ruu handval nadaa baigaa baigaa category giin jagsaaltiig uzuulne.
+// express - Third party library
+// fs, http - in built library
 
-// axios middleware -> intercepters 
+// axios middleware -> interceptors
 // /categories  luu huselt ilgeelee ter huseltiig barj avaad huselt ilgeehees omno uildel hiij bolno.
-// hariu irsenii daraa ter huseltiig helberjuuleed 
+// hariu irsenii daraa ter huseltiig helberjuuleed
 
 // bichiglel mash baga
 
 let statusCode = 200;
 
-fetch("http://localhost:8000/api/categories",{
+fetch("http://localhost:8000/api/categories", {
   headers: {
-    Authorization: `Bearer ${localStorage.getItem("token")}`
-  }
-}).then(res => {
-  statusCode = res.status;
-  return res.json();
-}).then(data => {
-  if(statusCode === 200) {
-    toast.success('Amjilttai');
-  }else{
-    toast.error('Aldaa garlaa');
-  }
-  console.log(data);
-});
+    Authorization: `Bearer ${localStorage.getItem("token")}`,
+  },
+})
+  .then((res) => {
+    statusCode = res.status;
+    return res.json();
+  })
+  .then((data) => {
+    if (statusCode === 200) {
+      toast.success("Amjilttai");
+    } else {
+      toast.error("Aldaa garlaa");
+    }
+    console.log(data);
+  });
 
 axios.interceptors.request.use((config) => {
   config.headers.Authorization = `Bearer ${localStorage.getItem("token")}`;
 });
 
-axios.get("http://localhost:8000/api/categories").then(res =>{
-  if(res.statusCode === 200) {
-    toast.success('Amjilttai');
-  }else{
-    toast.error('Aldaa garlaa');
+axios.get("http://localhost:8000/api/categories").then((res) => {
+  if (res.statusCode === 200) {
+    toast.success("Amjilttai");
+  } else {
+    toast.error("Aldaa garlaa");
   }
   console.log(res.data);
 });
 
-
 // import axios from "axios"; 1.73MB -> build -> 500KB
 
-// npm -> Node Package Manager 
+// npm -> Node Package Manager
 // nodejs library tai haritsadag heseg ni npmjs.com
 // Open Source
 // ReactJS -> NextJS, GatsbyJS
-// axios -> Axios2 
+// axios -> Axios2
 // Vanilla Javascript -> Engiin javascript
 // NodeJS -> C, C++ compiling,  Web applications, Mobile applications, Desktop applications
 // NodeJS buh code oo Javascript bichvel amar baina
@@ -87,13 +88,11 @@ axios.get("http://localhost:8000/api/categories").then(res =>{
 // python, pip
 // javascript, npm
 
-
 // 2. JSP file Java deer html file
 // 3. Java Spring MVC
 // 4. mysql
 // 5. nginx
 // 6. ubuntu bash script
-
 
 const updateCategories = () => {
   fs.writeFileSync("categoryData.json", JSON.stringify(categories));
