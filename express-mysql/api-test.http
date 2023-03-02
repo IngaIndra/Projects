@@ -1,0 +1,31 @@
+GET http://localhost:8000/
+
+###
+POST http://localhost:8000/
+Content-Type: application/json
+
+{
+    "name":"Technology",
+    "slug":"techss",
+    "image":""
+}
+
+###
+
+DELETE http://localhost:8000/
+Content-Type: application/json  
+
+{
+"id":4
+}
+
+###
+PUT http://localhost:8000/
+Content-Type: application/json  
+
+{
+    "name":"updated",
+    "slug":"updtd",
+    "image":"",
+    "id":10
+}
