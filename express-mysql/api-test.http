@@ -1,7 +1,10 @@
-GET http://localhost:8000/
+//category starts here
+
+GET http://localhost:8000/categories
 
 ###
-POST http://localhost:8000/
+
+POST http://localhost:8000/categories
 Content-Type: application/json
 
 {
@@ -12,7 +15,7 @@ Content-Type: application/json
 
 ###
 
-DELETE http://localhost:8000/
+DELETE http://localhost:8000/categories
 Content-Type: application/json  
 
 {
@@ -20,7 +23,8 @@ Content-Type: application/json
 }
 
 ###
-PUT http://localhost:8000/
+
+PUT http://localhost:8000/categories
 Content-Type: application/json  
 
 {
@@ -28,4 +32,48 @@ Content-Type: application/json
     "slug":"updtd",
     "image":"",
     "id":10
+}
+
+###
+
+GET http://localhost:8000/categories/2
+###
+
+//Products starts here 
+GET http://localhost:8000/products
+
+###
+
+GET http://localhost:8000/products/11
+
+###
+
+POST http://localhost:8000/products
+Content-Type: application/json
+
+{
+    "name":"product1",
+    "slug":"prodsasa",
+    "image":"",
+    "id":2
+}
+
+###
+
+DELETE http://localhost:8000/products
+Content-Type: application/json  
+
+{
+"id":12
+}
+
+###
+PUT http://localhost:8000/products
+Content-Type: application/json  
+
+{
+    "name":"updated",
+    "slug":"updtd",
+    "image":"",
+    "id":7
 }
