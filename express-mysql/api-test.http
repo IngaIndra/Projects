@@ -1,9 +1,6 @@
 //category starts here
-
 GET http://localhost:8000/categories
-
 ###
-
 POST http://localhost:8000/categories
 Content-Type: application/json
 
@@ -12,18 +9,14 @@ Content-Type: application/json
     "slug":"techss",
     "image":""
 }
-
 ###
-
 DELETE http://localhost:8000/categories
 Content-Type: application/json  
 
 {
 "id":4
 }
-
 ###
-
 PUT http://localhost:8000/categories
 Content-Type: application/json  
 
@@ -33,21 +26,16 @@ Content-Type: application/json
     "image":"",
     "id":10
 }
-
 ###
-
 GET http://localhost:8000/categories/2
 ###
 
+
 //Products starts here 
 GET http://localhost:8000/products
-
 ###
-
 GET http://localhost:8000/products/11
-
 ###
-
 POST http://localhost:8000/products
 Content-Type: application/json
 
@@ -57,16 +45,13 @@ Content-Type: application/json
     "image":"",
     "id":2
 }
-
 ###
-
 DELETE http://localhost:8000/products
 Content-Type: application/json  
 
 {
 "id":12
 }
-
 ###
 PUT http://localhost:8000/products
 Content-Type: application/json  
@@ -77,3 +62,4 @@ Content-Type: application/json
     "image":"",
     "id":7
 }
+###
