@@ -19,3 +19,25 @@ create table products (
     createdAt datetime, 
     PRIMARY KEY (id)
     );
+
+
+--todo category 
+    CREATE TABLE todoCategory (
+ id INT unsigned auto_increment,
+ name VARCHAR(255),
+ PRIMARY KEY (id)
+    );
+
+    -- todo
+    CREATE TABLE todo (
+        id INT unsigned auto_increment,
+        name VARCHAR(255),
+        isDone BOOLEAN DEFAULT false, 
+        todoCategoryId int UNSIGNED,
+        PRIMARY KEY (id),
+        FOREIGN KEY (todoCategoryId) REFERENCES todoCategory (id)
+    );
+
+    insert INTO todoCategory VALUES (NULL, 'Must do');
+
+    insert into todo values (NULL,'Brush teeth',false,1);
