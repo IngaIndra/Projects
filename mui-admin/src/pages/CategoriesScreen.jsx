@@ -67,9 +67,11 @@ export const CategoriesScreen = () => {
       renderCell: (params) => (
         <Stack sx={{ flexDirection: "row" }}>
           <Tooltip title="Edit">
-            <IconButton aria-label="edit" color="primary">
-              <Edit fontSize="inherit" />
-            </IconButton>
+            <Link component={RouterLink} to="/edit">
+              <IconButton aria-label="edit" color="primary">
+                <Edit fontSize="inherit" />
+              </IconButton>
+            </Link>
           </Tooltip>
           <Tooltip title="Delete">
             <IconButton

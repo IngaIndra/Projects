@@ -4,6 +4,7 @@ import { Route, Routes } from "react-router";
 import { Layout } from "./components/Layout";
 import { useDialog } from "./hooks/useDialog";
 import { CategoriesScreen, HomeScreen } from "./pages";
+import { EditScreen } from "./pages/EditScreen";
 import { NewCategoriesScreen } from "./pages/NewCategoriesScreen";
 
 const bgColor = blueGrey[50];
@@ -25,6 +26,7 @@ function App() {
           <Route path="/" element={<HomeScreen />} />
           <Route path="/categories" element={<CategoriesScreen />} />
           <Route path="/new" element={<NewCategoriesScreen />} />
+          <Route path="/edit" element={<EditScreen />} />
         </Routes>
       </Stack>
     </Layout>

@@ -14,7 +14,7 @@ DELETE http://localhost:8000/categories
 Content-Type: application/json  
 
 {
-"id":4
+"id":10
 }
 ###
 PUT http://localhost:8000/categories
@@ -67,7 +67,7 @@ Content-Type: application/json
 //Users start here 
 GET http://localhost:8000/users
 ###
-GET http://localhost:8000/users/M1xpwqdsNEHDhXDgOQsv2
+GET http://localhost:8000/users/dnosKgWPmiXQxvxnp2I7-
 ###
 POST http://localhost:8000/users
 Content-Type: application/json
@@ -75,15 +75,15 @@ Content-Type: application/json
     {
     "firstName":"Temuulen",
     "lastName": "Narmandakh",
-    "birthDate" : "1998-07-11",
-    "email": "temuulen.mmnm@pinecone.m,,n",
-    "phone": "96667407",
+    "birthDate" : "1995-07-11",
+    "email": "temuulen.k@pinecone.mn",
+    "phone": "96669932",
     "password": "",
     "imageUrl": ""
 }
 
 ###
-DELETE http://localhost:8000/users/GwgLlKDAS4vlSKptyG7hZ
+DELETE http://localhost:8000/users/wsQGfxxu_X4WwoyrMGMK7
 
 ###
 PUT http://localhost:8000/users/cE38ni7lXtjIr0gTaW1eK
@@ -91,10 +91,10 @@ Content-Type: application/json
 
 {
     "firstName":"Temuulen",
-    "lastName": "Nkkk",
-    "birthDate" : "1998-07-11",
-    "email": "temuulen.m@pinecone.mn",
-    "phone": "96667436",
+    "lastName": "N",
+    "birthDate" : "1999-07-11",
+    "email": "temuulesn.m@pinecone.mn",
+    "phone": "96665436",
     "password": "",
     "imageUrl": ""
 }

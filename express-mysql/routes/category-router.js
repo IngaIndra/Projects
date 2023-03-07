@@ -27,8 +27,8 @@ router.post("/", async (req, res) => {
   }
 });
 
-router.delete("/", async (req, res) => {
-  const { id } = req.body;
+router.delete("/:id", async (req, res) => {
+  const { id } = req.params;
   try {
     res.json(await deleteCategory(id));
   } catch (err) {
