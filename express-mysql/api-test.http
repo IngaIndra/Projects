@@ -63,3 +63,39 @@ Content-Type: application/json
     "id":7
 }
 ###
+
+//Users start here 
+GET http://localhost:8000/users
+###
+GET http://localhost:8000/users/M1xpwqdsNEHDhXDgOQsv2
+###
+POST http://localhost:8000/users
+Content-Type: application/json
+
+    {
+    "firstName":"Temuulen",
+    "lastName": "Narmandakh",
+    "birthDate" : "1998-07-11",
+    "email": "temuulen.mmnm@pinecone.m,,n",
+    "phone": "96667407",
+    "password": "",
+    "imageUrl": ""
+}
+
+###
+DELETE http://localhost:8000/users/GwgLlKDAS4vlSKptyG7hZ
+
+###
+PUT http://localhost:8000/users/cE38ni7lXtjIr0gTaW1eK
+Content-Type: application/json  
+
+{
+    "firstName":"Temuulen",
+    "lastName": "Nkkk",
+    "birthDate" : "1998-07-11",
+    "email": "temuulen.m@pinecone.mn",
+    "phone": "96667436",
+    "password": "",
+    "imageUrl": ""
+}
+###
