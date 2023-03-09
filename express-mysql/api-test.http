@@ -90,11 +90,11 @@ PUT http://localhost:8000/users/cE38ni7lXtjIr0gTaW1eK
 Content-Type: application/json  
 
 {
-    "firstName":"Temuulen",
-    "lastName": "N",
+    "firstName":"Temuulen2",
+    "lastName": "N2",
     "birthDate" : "1999-07-11",
-    "email": "temuulesn.m@pinecone.mn",
-    "phone": "96665436",
+    "email": "temuulesn1.m@pinecone.mn",
+    "phone": "96665439",
     "password": "",
     "imageUrl": ""
 }

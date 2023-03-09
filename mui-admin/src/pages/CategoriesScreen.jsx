@@ -15,6 +15,8 @@ import axios from "axios";
 import { Link as RouterLink } from "react-router-dom";
 import { useToast } from "../hooks";
 
+import { UserEdit } from "../components/Users/UserEdit";
+
 const breadCrumbs = [
   {
     label: "",
@@ -32,14 +34,14 @@ export const CategoriesScreen = () => {
   const showToast = useToast();
 
   useEffect(() => {
-    axios.get("http://localhost:8000/categories").then((res) => {
+    axios.get("http://localhost:8000/users").then((res) => {
       setCategories(res.data);
     });
   }, []);
 
   const deleteItem = (id) => {
     axios
-      .delete("http://localhost:8000/categories/" + id)
+      .delete("http://localhost:8000/users/" + id)
       .then((res) => {
         showToast("Amjilttai ustgalaa");
         setCategories(categories.filter((cat) => cat.id !== id));
@@ -56,7 +58,13 @@ export const CategoriesScreen = () => {
       width: 50,
       renderCell: (params) => params.api.getRowIndex(params.row.id) + 1,
     },
-    { field: "name", headerName: "Name", flex: 1 },
+    { field: "firstName", headerName: "Firstname", flex: 1 },
+    { field: "lastName", headerName: "Lastname", flex: 1 },
+    { field: "birthDate", headerName: "Birthdate", flex: 1 },
+    { field: "email", headerName: "Email", flex: 1 },
+    { field: "phone", headerName: "phone", flex: 1 },
+    { field: "password", headerName: "password", flex: 1 },
+    { field: "imageUrl", headerName: "imageUrl", flex: 1 },
     {
       field: "",
       headerName: "Actions",
@@ -65,26 +73,32 @@ export const CategoriesScreen = () => {
       filterable: false,
       headerAlign: "center",
       renderCell: (params) => (
-        <Stack sx={{ flexDirection: "row" }}>
-          <Tooltip title="Edit">
-            <Link component={RouterLink} to="/edit">
-              <IconButton aria-label="edit" color="primary">
-                <Edit fontSize="inherit" />
+        <>
+          <Stack sx={{ flexDirection: "row" }}>
+            <Tooltip title="Delete">
+              <Link
+                component={RouterLink}
+                to={`/categories/edit/${params.row.id}`}
+                underline="none"
+              >
+                <IconButton aria-label="delete" color="primary">
+                  <Edit fontSize="inherit" />
+                </IconButton>
+              </Link>
+            </Tooltip>
+            <Tooltip title="Delete">
+              <IconButton
+                aria-label="delete"
+                color="secondary"
+                onClick={() => {
+                  deleteItem(params.row.id);
+                }}
+              >
+                <Delete fontSize="inherit" />
               </IconButton>
-            </Link>
-          </Tooltip>
-          <Tooltip title="Delete">
-            <IconButton
-              aria-label="delete"
-              color="secondary"
-              onClick={() => {
-                deleteItem(params.row.id);
-              }}
-            >
-              <Delete fontSize="inherit" />
-            </IconButton>
-          </Tooltip>
-        </Stack>
+            </Tooltip>
+          </Stack>
+        </>
       ),
     },
   ];
@@ -110,7 +124,7 @@ export const CategoriesScreen = () => {
             justifyContent: "space-between",
           }}
         >
-          <Link component={RouterLink} to="/new" underline="none">
+          <Link component={RouterLink} to="/categories/new" underline="none">
             <Button variant="contained">New</Button>
           </Link>
           <Button variant="contained">Filter</Button>

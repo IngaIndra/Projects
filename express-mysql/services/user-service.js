@@ -2,7 +2,9 @@ import pool from "../config/mysql-config.js";
 import { nanoid } from "nanoid";
 
 export const getUsers = async () => {
-  const [result] = await pool.query("SELECT * FROM user");
+  const [result] = await pool.query(
+    "SELECT userId as id,firstName,lastName,birthDate,email,phone,password,imageUrl FROM user"
+  );
   return result;
 };
 
