@@ -46,7 +46,7 @@ export const EditCategoriesScreen = () => {
         }}
       >
         <Typography variant="h4" sx={{ mb: 3 }}>
-          Add categories
+          Edit category
         </Typography>
         <Stack sx={{ height: 400, width: "100%", mt: 3, gap: "24px" }}>
           <TextField
