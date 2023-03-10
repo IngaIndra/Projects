@@ -1,0 +1,11 @@
+POST http://localhost:8001/links  
+Content-Type: application/json 
+
+{
+    "url": "https://leetcode.com/problems/search-insert-position/description/"
+}
+
+### 
+GET http://localhost:8001/WWqfb9q1S
+###
+
