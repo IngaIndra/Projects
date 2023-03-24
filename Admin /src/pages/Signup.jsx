@@ -10,6 +10,7 @@ import { TOAST_CONFIG } from "../utils/configs";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import axios from "axios";
 
 export default function Signup() {
   const [email, setEmail] = useState("");
@@ -19,25 +20,17 @@ export default function Signup() {
   const navigate = useNavigate();
 
   const submitSignup = () => {
-    // STATUS INFO
-    let status = 200;
-
-    fetch("https://demo-api-one.vercel.app/api/signup", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ email, password, repassword }),
-    })
-      .then((res) => {
-        status = res.status;
-        return res.json();
+    axios
+      .post("http://localhost:8080/api/register", {
+        email,
+        password,
+        repassword,
       })
-      .then((data) => {
-        if (status !== 200) {
-          toast.error(data.message, TOAST_CONFIG);
+      .then((res) => {
+        if (res.status !== 200) {
+          toast.error(res.data.message, TOAST_CONFIG);
         } else {
-          toast.success(data.message, TOAST_CONFIG);
+          toast.success(res.data.message, TOAST_CONFIG);
           setTimeout(() => {
             navigate("/signin");
           }, 1000);

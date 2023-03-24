@@ -1,7 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 import Button from "react-bootstrap/esm/Button";
-
-import Form from "react-bootstrap/esm/Form";
 
 import { SlPlus } from "react-icons/sl";
 

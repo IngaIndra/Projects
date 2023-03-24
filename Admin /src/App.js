@@ -5,11 +5,11 @@ import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Articles from "./pages/Articles";
-// import Signin from "./pages/Signin";
-// import SignInError from "./pages/SignInError";
-// import Signup from "./pages/Signup";
-// import SigninSuccess from "./pages/SigninSuccess";
-// import Signout from "./pages/Signout";
+import Signin from "./pages/Signin";
+import SignInError from "./pages/SignInError";
+import Signup from "./pages/Signup";
+import SigninSuccess from "./pages/SigninSuccess";
+import Signout from "./pages/Signout";
 import Categories from "./pages/Categories";
 import MenuPositions from "./pages/MenuPositions";
 import Menus from "./pages/Menus";
@@ -17,6 +17,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { ModalProvider } from "./contexts/ModalContext";
 import OpenAi from "./pages/OpenAi";
+import ProfielScreen from "./pages/ProfileScreen";
 
 export default function App() {
   const [menuShow, setMenuShow] = useState(false);
@@ -29,25 +30,28 @@ export default function App() {
     });
   }, []);
 
-  // const [me, setMe] = useState(undefined);
+  const [me, setMe] = useState(undefined);
 
-  // useEffect(() => {
-  //   const myData = localStorage.getItem('me');
-  //   if (myData !== 'undefined') {
-  //     setMe(JSON.parse(myData));
-  //   }
-  // }, []);
+  useEffect(() => {
+    const myData = localStorage.getItem("me");
+    if (myData !== "undefined") {
+      setMe(JSON.parse(myData));
+    }
+  }, []);
 
-  // if (!me) {
-  //   return (
-  //     <Routes>
-  //       <Route path="/signin" element={<Signin />} />
-  //       <Route path="/signin/success" element={<SigninSuccess setMe={setMe} />} />
-  //       <Route path="/signup" element={<Singup />} />
-  //       <Route path="*" element={<SignInError />} />
-  //     </Routes>
-  //   );
-  // }
+  if (!me) {
+    return (
+      <Routes>
+        <Route path="/signin" element={<Signin />} />
+        <Route
+          path="/signin/success"
+          element={<SigninSuccess setMe={setMe} />}
+        />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="*" element={<SignInError />} />
+      </Routes>
+    );
+  }
 
   return (
     <ModalProvider>
@@ -58,12 +62,19 @@ export default function App() {
             <li>
               <Link to={"/"}>Home</Link>
             </li>
-            <li>
+            {/* <li>
               <Link to={"/menu-positions"}>Menu Positions</Link>
             </li>
             <li>
               <Link to={"/categories"}>Categories</Link>
-            </li>
+            </li> */}
+            {menus.map((menu) => {
+              return (
+                <li key={menu.id}>
+                  <Link to={menu.link}>{menu.name}</Link>
+                </li>
+              );
+            })}
           </ul>
         </div>
         <div className="off-menu-sibling">
@@ -74,7 +85,8 @@ export default function App() {
             <Route path="/categories" element={<Categories />} />
             <Route path="/articles" element={<Articles />} />
             <Route path="/openai" element={<OpenAi />} />
-            {/* <Route path="/signout" element={<Signout setMe={setMe} />} /> */}
+            <Route path="/profile" element={<ProfielScreen />} />
+            {<Route path="/signout" element={<Signout setMe={setMe} />} />}
           </Routes>
         </div>
       </div>
