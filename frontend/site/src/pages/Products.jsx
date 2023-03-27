@@ -2,11 +2,10 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import dayjs from "dayjs";
 import currencyFormatter from "../utils/currencyFormatter";
-
 import relateTime from "dayjs/plugin/relativeTime";
+import updateLocale from "dayjs/plugin/updateLocale";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 dayjs.extend(relateTime);
-import dayjs from "dayjs";
 
 dayjs.extend(relateTime);
 dayjs.locale("mn");

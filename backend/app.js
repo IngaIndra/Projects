@@ -2,6 +2,7 @@ const express = require("express"); //require=import
 const cors = require("cors"); //security
 const fs = require("fs");
 const shortid = require("shortid");
+const fetch = require("fetch");
 
 // const dotenv = require("dotenv");
 // dotenv.config();
@@ -34,38 +35,38 @@ console.log("categories", categories);
 
 // bichiglel mash baga
 
-let statusCode = 200;
+// let statusCode = 200;
 
-fetch("http://localhost:8000/api/categories", {
-  headers: {
-    Authorization: `Bearer ${localStorage.getItem("token")}`,
-  },
-})
-  .then((res) => {
-    statusCode = res.status;
-    return res.json();
-  })
-  .then((data) => {
-    if (statusCode === 200) {
-      toast.success("Amjilttai");
-    } else {
-      toast.error("Aldaa garlaa");
-    }
-    console.log(data);
-  });
+// fetch("http://localhost:8000/api/categories", {
+//   headers: {
+//     Authorization: `Bearer ${localStorage.getItem("token")}`,
+//   },
+// })
+//   .then((res) => {
+//     statusCode = res.status;
+//     return res.json();
+//   })
+//   .then((data) => {
+//     if (statusCode === 200) {
+//       toast.success("Amjilttai");
+//     } else {
+//       toast.error("Aldaa garlaa");
+//     }
+//     console.log(data);
+//   });
 
-axios.interceptors.request.use((config) => {
-  config.headers.Authorization = `Bearer ${localStorage.getItem("token")}`;
-});
+// axios.interceptors.request.use((config) => {
+//   config.headers.Authorization = `Bearer ${localStorage.getItem("token")}`;
+// });
 
-axios.get("http://localhost:8000/api/categories").then((res) => {
-  if (res.statusCode === 200) {
-    toast.success("Amjilttai");
-  } else {
-    toast.error("Aldaa garlaa");
-  }
-  console.log(res.data);
-});
+// axios.get("http://localhost:8000/api/categories").then((res) => {
+//   if (res.statusCode === 200) {
+//     toast.success("Amjilttai");
+//   } else {
+//     toast.error("Aldaa garlaa");
+//   }
+//   console.log(res.data);
+// });
 
 // import axios from "axios"; 1.73MB -> build -> 500KB
 
