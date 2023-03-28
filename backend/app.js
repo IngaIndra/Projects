@@ -24,6 +24,7 @@ const port = process.env.PORT || 8000;
 let categories = JSON.parse(fs.readFileSync("categoryData.json", "utf-8"));
 
 console.log("categories", categories);
+
 // javascript code -g C, C++
 // API localhost:8000/api/categories ruu handval nadaa baigaa baigaa category giin jagsaaltiig uzuulne.
 // express - Third party library
@@ -34,39 +35,6 @@ console.log("categories", categories);
 // hariu irsenii daraa ter huseltiig helberjuuleed
 
 // bichiglel mash baga
-
-// let statusCode = 200;
-
-// fetch("http://localhost:8000/api/categories", {
-//   headers: {
-//     Authorization: `Bearer ${localStorage.getItem("token")}`,
-//   },
-// })
-//   .then((res) => {
-//     statusCode = res.status;
-//     return res.json();
-//   })
-//   .then((data) => {
-//     if (statusCode === 200) {
-//       toast.success("Amjilttai");
-//     } else {
-//       toast.error("Aldaa garlaa");
-//     }
-//     console.log(data);
-//   });
-
-// axios.interceptors.request.use((config) => {
-//   config.headers.Authorization = `Bearer ${localStorage.getItem("token")}`;
-// });
-
-// axios.get("http://localhost:8000/api/categories").then((res) => {
-//   if (res.statusCode === 200) {
-//     toast.success("Amjilttai");
-//   } else {
-//     toast.error("Aldaa garlaa");
-//   }
-//   console.log(res.data);
-// });
 
 // import axios from "axios"; 1.73MB -> build -> 500KB
 
