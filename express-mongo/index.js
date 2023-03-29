@@ -7,6 +7,7 @@ import multer from "multer";
 import { nanoid } from "nanoid";
 import cloudinary from "cloudinary";
 import cors from "cors";
+import { createRestaurant, findNearest } from "./services/restaurantService.js";
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -62,13 +63,31 @@ app.use("/api/users", userRouter);
 // app.use("/api/todo/categories", todoCategoriesRouter);
 // app.use("/api/todo", todoRouter);
 
-app.listen(PORT, () => {
-  console.log("http://localhost:" + PORT);
-});
-
 app.post("/files", upload.single("image"), async (req, res) => {
   const uploadedFile = await cloudinary.v2.uploader.upload(req.file.path);
   res.json(uploadedFile);
 });
 
 app.use("/uploads", express.static("uploads"));
+
+app.post("/restaurants", async (req, res) => {
+  const { name, location } = req.body;
+  const response = await createRestaurant({ name, location });
+  res.json(response);
+});
+
+app.get("/restaurants", async (req, res) => {
+  const { longitude, latitude } = req.body;
+  try {
+    console.log([longitude, latitude]);
+    const response = await findNearest([longitude, latitude]);
+    res.json(response);
+  } catch (e) {
+    console.log(e);
+    res.json("Error");
+  }
+});
+
+app.listen(PORT, () => {
+  console.log("http://localhost:" + PORT);
+});
