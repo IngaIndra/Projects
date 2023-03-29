@@ -1,0 +1,9 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.3/leaflet.min.css");
+
+body {
+  margin: 0;
+}
+
+.leaflet-container {
+  min-height: calc(100vh - 66px);
+}
