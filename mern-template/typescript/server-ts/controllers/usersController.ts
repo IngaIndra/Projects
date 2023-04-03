@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import e, { Request, Response } from "express";
 import UserModel, { UserInterface } from "../models/userModel";
 
 export const countAllUsers = async (req: Request, res: Response) => {
@@ -23,6 +23,16 @@ export const createUser = async (req: Request, res: Response) => {
   const newUser = await UserModel.create(req.body);
   res.json(newUser);
 };
+
+// export const createUser = async (req: Request, res: Response) => {
+//   try {
+//     const newUser = await UserModel.create(req.body);
+//     res.json(newUser);
+//   } catch (err) {
+//     console.error(e);
+//   }
+// };
+
 
 export const updateUser = async (req: Request, res: Response) => {
 

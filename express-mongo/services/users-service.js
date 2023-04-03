@@ -8,7 +8,7 @@ export const getUsers = () => {
 };
 
 export const getUserById = async (id) => {
-  return await userModel.findById(id);
+  return await UserModel.findById(id);
 };
 
 export const createUser = async (user) => {
@@ -16,7 +16,7 @@ export const createUser = async (user) => {
 };
 
 export const updateUser = async (id, user) => {
-  return await userModel.findByIdAndUpdate(id, user, { new: true });
+  return await UserModel.findByIdAndUpdate(id, user, { new: true });
 };
 
 export const deleteUser = async (id) => {
