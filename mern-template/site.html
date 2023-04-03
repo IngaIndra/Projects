@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product Name | My E-Commerce Store</title>
+    <!-- Include Tailwind CSS -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/tailwindcss@2.1.1/dist/tailwind.min.css"
+    />
+  </head>
+  <body class="bg-gray-100">
+    <!-- Header section -->
+    <header class="bg-white shadow-md">
+      <div
+        class="container mx-auto flex items-center justify-between py-4 md:py-6"
+      >
+        <!-- Logo -->
+        <a href="#" class="text-xl font-bold text-gray-800">My Store</a>
+
+        <!-- Navigation menu -->
+        <nav class="hidden md:block">
+          <ul class="flex items-center">
+            <li>
+              <a href="#" class="px-4 py-2 text-gray-700 hover:text-gray-900"
+                >Home</a
+              >
+            </li>
+            <li>
+              <a href="#" class="px-4 py-2 text-gray-700 hover:text-gray-900"
+                >Shop</a
+              >
+            </li>
+            <li>
+              <a href="#" class="px-4 py-2 text-gray-700 hover:text-gray-900"
+                >About</a
+              >
+            </li>
+            <li>
+              <a href="#" class="px-4 py-2 text-gray-700 hover:text-gray-900"
+                >Contact</a
+              >
+            </li>
+          </ul>
+        </nav>
+
+        <!-- Mobile menu button -->
+        <div class="md:hidden">
+          <button
+            type="button"
+            class="block text-gray-800 hover:text-gray-900 focus:text-gray-900 focus:outline-none"
+          >
+            <svg class="h-6 w-6 fill-current" viewBox="0 0 24 24">
+              <path d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile menu -->
+      <div class="md:hidden hidden">
+        <ul class="flex flex-col items-center">
+          <li>
+            <a
+              href="#"
+              class="block px-4 py-2 text-gray-700 hover:text-gray-900"
+              >Home</a
+            >
+          </li>
+          <li>
+            <a
+              href="#"
+              class="block px-4 py-2 text-gray-700 hover:text-gray-900"
+              >Shop</a
+            >
+          </li>
+          <li>
+            <a
+              href="#"
+              class="block px-4 py-2 text-gray-700 hover:text-gray-900"
+              >About</a
+            >
+          </li>
+          <li>
+            <a
+              href="#"
+              class="block px-4 py-2 text-gray-700 hover:text-gray-900"
+              >Contact</a
+            >
+          </li>
+        </ul>
+      </div>
+    </header>
+
+    <!-- Product section -->
+    <section class="container mx-auto my-4">
+      <div class="flex flex-wrap">
+        <div class="w-full md:w-1/2 p-4">
+          <img src="product-image.jpg" alt="Product Name" class="rounded-lg" />
+        </div>
+        <div class="w-full md:w-1/2 p-4">
+          <h1 class="text-3xl font-bold text-gray-800">Product Name</h1>
+          <p class="text-gray-600 my-2">Product Description</p>
+          <h2 class="text-lg font-bold text-gray-800">$99.99</h2>
+          <form class="mt-4">
+            <div class="flex flex-wrap -mx-2">
+              <div class="w-full md:w-1/2 px-2 mb-4">
+                <label
+                  class="block text-gray-700 text-sm font-bold mb-2"
+                  for="quantity"
+                  >Quantity</label
+                >
+                <input
+                  class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  id="quantity"
+                  type="number"
+                  min="1"
+                  value="1"
+                />
+              </div>
+              <div class="w-full md:w-1/2 px-2 mb-4">
+                <label
+                  class="block text-gray-700 text-sm font-bold mb-2"
+                  for="color"
+                  >Color</label
+                >
+                <select
+                  class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  id="color"
+                >
+                  <option>Red</option>
+                  <option>Green</option>
+                  <option>Blue</option>
+                </select>
+              </div>
+            </div>
+            <button
+              class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              type="submit"
+            >
+              Add to Cart
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+    <section>
+      <div class="container mx-auto px-4 py-6">
+        <h1 class="text-3xl font-bold text-gray-800 mb-6">Our Products</h1>
+        <div
+          class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+        >
+          <!-- Product card 1 -->
+          <div class="bg-white rounded-lg shadow-md overflow-hidden">
+            <img
+              src="product-1.jpg"
+              alt="Product 1"
+              class="h-64 w-full object-cover"
+            />
+            <div class="p-4">
+              <h2 class="text-xl font-bold text-gray-800 mb-2">Product 1</h2>
+              <p class="text-gray-600 mb-4">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              </p>
+              <div class="flex items-center justify-between">
+                <p class="text-gray-800 font-bold">$99.99</p>
+                <button
+                  class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product card 2 -->
+          <div class="bg-white rounded-lg shadow-md overflow-hidden">
+            <img
+              src="product-2.jpg"
+              alt="Product 2"
+              class="h-64 w-full object-cover"
+            />
+            <div class="p-4">
+              <h2 class="text-xl font-bold text-gray-800 mb-2">Product 2</h2>
+              <p class="text-gray-600 mb-4">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              </p>
+              <div class="flex items-center justify-between">
+                <p class="text-gray-800 font-bold">$79.99</p>
+                <button
+                  class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product card 3 -->
+          <div class="bg-white rounded-lg shadow-md overflow-hidden">
+            <img
+              src="product-3.jpg"
+              alt="Product 3"
+              class="h-64 w-full object-cover"
+            />
+            <div class="p-4">
+              <h2 class="text-xl font-bold text-gray-800 mb-2">Product 3</h2>
+              <p class="text-gray-600 mb-4">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              </p>
+              <div class="flex items-center justify-between">
+                <p class="text-gray-800 font-bold">$119.99</p>
+                <button
+                  class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section>
+      <div class="container mx-auto px-4 py-6">
+        <h1 class="text-3xl font-bold text-gray-800 mb-6">Shopping Cart</h1>
+
+        <!-- Cart items section -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <!-- Cart item 1 -->
+          <div class="bg-white rounded-lg shadow-md overflow-hidden">
+            <div
+              class="flex items-center justify-between p-4 border-b border-gray-300"
+            >
+              <div class="flex items-center">
+                <img
+                  src="product-1.jpg"
+                  alt="Product 1"
+                  class="h-16 w-16 object-cover mr-4"
+                />
+                <div>
+                  <h2 class="text-lg font-bold text-gray-800">Product 1</h2>
+                  <p class="text-gray-600">Size: L, Color: Red</p>
+                </div>
+              </div>
+              <div>
+                <p class="text-gray-800 font-bold">$99.99</p>
+              </div>
+            </div>
+            <div class="flex items-center justify-between p-4">
+              <div class="flex items-center">
+                <button
+                  class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                >
+                  -
+                </button>
+                <input
+                  type="text"
+                  value="1"
+                  class="mx-2 w-12 text-center border border-gray-400 rounded"
+                />
+                <button
+                  class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                >
+                  +
+                </button>
+              </div>
+              <div>
+                <p class="text-gray-800 font-bold">$99.99</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Cart item 2 -->
+          <div class="bg-white rounded-lg shadow-md overflow-hidden">
+            <div
+              class="flex items-center justify-between p-4 border-b border-gray-300"
+            >
+              <div class="flex items-center">
+                <img
+                  src="product-2.jpg"
+                  alt="Product 2"
+                  class="h-16 w-16 object-cover mr-4"
+                />
+                <div>
+                  <h2 class="text-lg font-bold text-gray-800">Product 2</h2>
+                  <p class="text-gray-600">Size: M, Color: Blue</p>
+                </div>
+              </div>
+              <div>
+                <p class="text-gray-800 font-bold">$79.99</p>
+              </div>
+            </div>
+            <div class="flex items-center justify-between p-4">
+              <div class="flex items-center">
+                <button
+                  class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                >
+                  -
+                </button>
+                <input
+                  type="text"
+                  value="2"
+                  class="mx-2 w-12 text-center border border-gray-400 rounded"
+                />
+                <button
+                  class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                >
+                  +
+                </button>
+              </div>
+              <div>
+                <p class="text-gray-800 font-bold">$159.98</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cart summary section -->
+        <div class="flex items-center justify-between mt-12">
+          <div>
+            <p class="text-gray-800 font-bold">Subtotal: $259.97</p>
+            <p class="text-sm text-gray-600">
+              (Tax and shipping calculated at checkout)
+            </p>
+          </div>
+          <button
+            class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          >
+            Checkout
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container mx-auto px-4 py-6">
+        <h1 class="text-3xl font-bold text-gray-800 mb-6">Checkout</h1>
+
+        <!-- Billing information section -->
+        <div class="bg-white rounded-lg shadow-md overflow-hidden mb-6">
+          <div class="p-4 border-b border-gray-300">
+            <h2 class="text-xl font-bold text-gray-800">Billing Information</h2>
+          </div>
+          <div class="p-4">
+            <form>
+              <div class="mb-4">
+                <label class="block text-gray-700 font-bold mb-2" for="name">
+                  Name
+                </label>
+                <input
+                  class="border rounded w-full py-2 px-3 text-gray-700"
+                  id="name"
+                  type="text"
+                  placeholder="Enter your name"
+                />
+              </div>
+              <div class="mb-4">
+                <label class="block text-gray-700 font-bold mb-2" for="email">
+                  Email Address
+                </label>
+                <input
+                  class="border rounded w-full py-2 px-3 text-gray-700"
+                  id="email"
+                  type="email"
+                  placeholder="Enter your email address"
+                />
+              </div>
+              <div class="mb-4">
+                <label class="block text-gray-700 font-bold mb-2" for="address">
+                  Address
+                </label>
+                <input
+                  class="border rounded w-full py-2 px-3 text-gray-700"
+                  id="address"
+                  type="text"
+                  placeholder="Enter your address"
+                />
+              </div>
+              <div class="mb-4">
+                <label class="block text-gray-700 font-bold mb-2" for="city">
+                  City
+                </label>
+                <input
+                  class="border rounded w-full py-2 px-3 text-gray-700"
+                  id="city"
+                  type="text"
+                  placeholder="Enter your city"
+                />
+              </div>
+              <div class="mb-4">
+                <label class="block text-gray-700 font-bold mb-2" for="state">
+                  State
+                </label>
+                <input
+                  class="border rounded w-full py-2 px-3 text-gray-700"
+                  id="state"
+                  type="text"
+                  placeholder="Enter your state"
+                />
+              </div>
+              <div class="mb-4">
+                <label class="block text-gray-700 font-bold mb-2" for="zip">
+                  ZIP Code
+                </label>
+                <input
+                  class="border rounded w-full py-2 px-3 text-gray-700"
+                  id="zip"
+                  type="text"
+                  placeholder="Enter your ZIP code"
+                />
+              </div>
+            </form>
+          </div>
+        </div>
+        <!-- Payment information section -->
+        <div class="bg-white rounded-lg shadow-md overflow-hidden mb-6">
+          <div class="p-4 border-b border-gray-300">
+            <h2 class="text-xl font-bold text-gray-800">Payment Information</h2>
+          </div>
+          <div class="p-4">
+            <form>
+              <div class="mb-4">
+                <label
+                  class="block text-gray-700 font-bold mb-2"
+                  for="card-number"
+                >
+                  Card Number
+                </label>
+                <input
+                  class="border rounded w-full py-2 px-3 text-gray-700"
+                  id="card-number"
+                  type="text"
+                  placeholder="Enter your card number"
+                />
+              </div>
+              <div class="mb-4">
+                <label
+                  class="block text-gray-700 font-bold mb-2"
+                  for="expiration-date"
+                >
+                  Expiration Date
+                </label>
+                <input
+                  class="border rounded w-full py-2 px-3 text-gray-700"
+                  id="expiration-date"
+                  type="text"
+                  placeholder="MM / YY"
+                />
+              </div>
+              <div class="mb-4">
+                <label
+                  class="block text-gray-700 font-bold mb-2"
+                  for="security-code"
+                >
+                  Security Code
+                </label>
+                <input
+                  class="border rounded w-full py-2 px-3 text-gray-700"
+                  id="security-code"
+                  type="text"
+                  placeholder="Enter your security code"
+                />
+              </div>
+              <div class="mb-4">
+                <label class="flex items-center">
+                  <input type="checkbox" class="form-checkbox" />
+                  <span class="ml-2 text-gray-700"
+                    >Save this card for future purchases</span
+                  >
+                </label>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Footer section -->
+    <footer class="bg-white border-t border-gray-300">
+      <div class="container mx-auto px-4 py-6">
+        <p class="text-center text-gray-600">Copyright © My E-Commerce Store</p>
+      </div>
+    </footer>
+  </body>
+</html>
