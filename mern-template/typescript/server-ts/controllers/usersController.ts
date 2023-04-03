@@ -6,7 +6,7 @@ export const countAllUsers = async (req: Request, res: Response) => {
 };
 
 export const findAllUsers = async (req: Request, res: Response) => {
-  const { limit = "10", skip = 0 } = req.query;
+  const { limit = "10", skip = '0' } = req.query;
   const result: UserInterface[] = await UserModel.find({})
     .limit(Number(limit))
     .skip(Number(skip));
@@ -25,5 +25,5 @@ export const createUser = async (req: Request, res: Response) => {
 };
 
 export const updateUser = async (req: Request, res: Response) => {
-  
+
 }
