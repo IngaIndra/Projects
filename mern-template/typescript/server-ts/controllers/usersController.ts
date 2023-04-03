@@ -23,3 +23,7 @@ export const createUser = async (req: Request, res: Response) => {
   const newUser = await UserModel.create(req.body);
   res.json(newUser);
 };
+
+export const updateUser = async (req: Request, res: Response) => {
+  
+}
