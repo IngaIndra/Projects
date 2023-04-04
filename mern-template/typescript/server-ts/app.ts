@@ -1,6 +1,7 @@
 import express, { Express, Request, Response } from "express";
 import usersRouter from "./routes/usersRouter";
 import cors from "cors";
+import moviesRouter from "./routes/moviesRouter";
 
 const app: Express = express();
 
@@ -11,5 +12,6 @@ app.get("/", (req: Request, res: Response) => {
 });
 
 app.use("/api/users", usersRouter);
+app.use("/api/movies", moviesRouter);
 
 export default app;
