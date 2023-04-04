@@ -20,18 +20,9 @@ export const findUserById = async (req: Request, res: Response) => {
 };
 
 export const createUser = async (req: Request, res: Response) => {
-  const newUser = await UserModel.create(req.body);
-  res.json(newUser);
+  const result = await UserModel.create(req.body);
+  res.json(result);
 };
-
-// export const createUser = async (req: Request, res: Response) => {
-//   try {
-//     const newUser = await UserModel.create(req.body);
-//     res.json(newUser);
-//   } catch (err) {
-//     console.error(e);
-//   }
-// };
 
 
 export const updateUser = async (req: Request, res: Response) => {
