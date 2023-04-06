@@ -6,11 +6,11 @@ export const countAllMovies = async (req: Request, res: Response) => {
 };
 
 export const findAllMovies = async (req: Request, res: Response) => {
-  const { limit = "10", skip = "0", ordering = "releasedAsc" , filtering = "All" } = req.query;
+  const { limit = "10", skip = "0", ordering = "releasedAsc" , filtering = "" , q=''} = req.query;
   let sort = "";
   switch (ordering) {
-    case "releasedDesc":
-      sort = "-released";
+    case "releasedAsc":
+      sort = "released";
       break;
     case "imdbRatingDesc":
       sort = "-awards.wins";
@@ -22,51 +22,60 @@ export const findAllMovies = async (req: Request, res: Response) => {
       sort = "-title";
       break;
     default:
-      sort = "released";
+      sort = "-released";
       break;
   }
 
-  let filter = undefined;
-  switch (filtering) {
-    case 'Action':
-      filter = 'Action';
-      break;
-      case 'Horror':
-      filter = 'Horror';
-      break;
-      case 'Comedy':
-      filter = 'Comedy';
-      break;
-      case 'Animation':
-      filter = 'Animation';
-      break;
-      case 'Family':
-      filter = 'Family';
-      break;
-      case 'Drama':
-      filter = 'Drama';
-      break;
-      case 'Crime':
-      filter = 'Crime';
-      break;
-      case 'Mystery':
-      filter = 'Mystery';
-      break;
-      case 'Romance':
-      filter = 'Romance';
-      break;
-      case 'War':
-      filter = 'War';
-      break;
-      case 'Thriller':
-      filter = 'Thriller';
-      break;
-      default:
-        filter = {$in:["Action","Horror","Comedy","Animation","Family","Drama","Crime","Mystery","Romance","War","Thriller"]}
-        break;
+  // let filter = undefined;
+  // switch (filtering) {
+  //   case 'Action':
+  //     filter = 'Action';
+  //     break;
+  //     case 'Horror':
+  //     filter = 'Horror';
+  //     break;
+  //     case 'Comedy':
+  //     filter = 'Comedy';
+  //     break;
+  //     case 'Animation':
+  //     filter = 'Animation';
+  //     break;
+  //     case 'Family':
+  //     filter = 'Family';
+  //     break;
+  //     case 'Drama':
+  //     filter = 'Drama';
+  //     break;
+  //     case 'Crime':
+  //     filter = 'Crime';
+  //     break;
+  //     case 'Mystery':
+  //     filter = 'Mystery';
+  //     break;
+  //     case 'Romance':
+  //     filter = 'Romance';
+  //     break;
+  //     case 'War':
+  //     filter = 'War';
+  //     break;
+  //     case 'Thriller':
+  //     filter = 'Thriller';
+  //     break;
+  //     default:
+  //       filter = {$in:["Action","Horror","Comedy","Animation","Family","Drama","Crime","Mystery","Romance","War","Thriller"]}
+  //       break;
+  // }
+
+  const condition:any = {};
+
+  if (filtering){
+    condition.genres = filtering;
+  }
+  if (q) {
+    condition.title =  {'$regex': new RegExp(`${q}`, "i")}
   }
 
-  const result: IMovie[] = await MovieModel.find({"genres": filter})
+  const result: IMovie[] = await MovieModel.find(condition)
     .sort(sort)
     .limit(Number(limit))
     .skip(Number(skip));
@@ -79,3 +88,5 @@ export const findMovieById = async (req: Request, res: Response) => {
   const result: IMovie | null = await MovieModel.findById(_id);
   res.json(result);
 };
+
+

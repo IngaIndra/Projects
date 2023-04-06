@@ -10,13 +10,22 @@ export default function Home(): JSX.Element {
 
   const [filtering, setFiltering] = useState<string>("");
 
+  const [pageSize, setPageSize] = useState(12);
+
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const [q, setQ] = useState("")
+  const [searchedQ, setSearchedQ] = useState("")
+
+  
+
   useEffect(() => {
-    fetch(`http://localhost:7070/api/movies?limit=24&ordering=${ordering}&filtering=${filtering}`)
+    fetch(`http://localhost:7070/api/movies?limit=${pageSize}&ordering=${ordering}&filtering=${filtering}&q=${searchedQ}`)
       .then((res) => res.json())
       .then((data) => {
         setMovies(data);
       });
-  }, [ordering, filtering]);
+  }, [ordering, filtering, pageSize, searchedQ]);
 
   return (
     <>
@@ -28,17 +37,17 @@ export default function Home(): JSX.Element {
       </Head>
 
       <div className="bg-slate-100 min-h-screen mt-10">
-        <div className="container mx-auto ">
-          <div className="bg-white">
+        <div className="container mx-auto">
+          <div className="bg-white flex">
             <select
               value={ordering}
               onChange={(e): void => {
                 setOrdering(e.target.value);
               }}
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              className="bg-gray-50 border flex items-center mr-4 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             >
-              <option value="releasedAsc">Oldest</option>
               <option value="releasedDesc">Newest</option>
+              <option value="releasedAsc">Oldest</option>
               <option value="imdbRatingDesc">Most popular</option>
               <option value="titleAsc">A-Z</option>
               <option value="titleDesc">Z-A</option>
@@ -49,9 +58,9 @@ export default function Home(): JSX.Element {
               onChange={(e): void => {
                 setFiltering(e.target.value);
               }}
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              className="bg-gray-50 border flex items-center mr-4 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             >
-              <option value="All">All</option>
+              <option value="">All</option>
               <option value="Action">Action</option>
               <option value="Horror">Horror</option>
               <option value="Comedy">Comedy</option>
@@ -63,26 +72,53 @@ export default function Home(): JSX.Element {
               <option value="Romance">Romance</option>
               <option value="War">War</option>
               <option value="Thriller">Thriller</option>
-
-          
             </select>
 
             <div className="relative w-full">
-            <input type="search" id="search-dropdown" className="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-r-lg border-l-gray-50 border-l-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-l-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500" placeholder="Search Mockups, Logos, Design Templates..." required />
-            <button type="submit" className="absolute top-0 right-0 p-2.5 text-sm font-medium text-white bg-blue-700 rounded-r-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                <svg aria-hidden="true" className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-                <span className="sr-only">Search</span>
-            </button>
-        </div>
+              <input onKeyDown={(e):void => {
+                  if (e.key==='Enter')
+                  {
+                    setSearchedQ(q);
+                  }
+            
+                }}value={q} onChange={(e):void => {
+                setQ(e.target.value)
+              }} type="search" id="search-dropdown" className="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-lg border-gray border-l-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-l-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500" placeholder="Search movies, TV, actors, more..." required />
+                <button onClick={():void => {
+                  setSearchedQ(q);
+                }} type="submit" className="absolute top-0 right-0 p-2.5 text-sm font-medium text-white bg-blue-700 rounded-r-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                  <svg aria-hidden="true" className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                  <span className="sr-only">Search</span>
+                </button>
+            </div>
+          </div>
 
+        <div className="flex justify-end mt-5">
+          <label>
+            Хуудаслалт
+            <select
+              className="form-control ml-3 p-2 rounded-lg"
+              onChange={(e): void => {
+                setPageSize(Number(e.target.value));
+                setCurrentPage(currentPage);
+              }}
+              value={pageSize}
+            >
+              <option value={12}>12</option>
+              <option value={24}>24</option>
+              <option value={36}>36</option>
+              <option value={48}>48</option>
+              <option value={60}>60</option>
+            </select>
+          </label>
+</div>
+          
 
-
-            <div className="p-4 grid grid-cols-6 gap-4">
+          <div className="p-4 grid grid-cols-6 gap-4">
               {movies.map((movie) => (
                 <MovieCard movie={movie} key={movie._id} />
               ))}
             </div>
-          </div>
         </div>
       </div>
     </>
