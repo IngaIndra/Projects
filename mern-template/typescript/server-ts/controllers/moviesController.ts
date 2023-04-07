@@ -6,7 +6,7 @@ export const countAllMovies = async (req: Request, res: Response) => {
 };
 
 export const findAllMovies = async (req: Request, res: Response) => {
-  const { limit = "10", skip = "0", ordering = "releasedAsc" , filtering = "" , q=''} = req.query;
+  const { limit = "10", skip = "0", ordering = "" , filtering = "" , q=''} = req.query;
   let sort = "";
   switch (ordering) {
     case "releasedAsc":

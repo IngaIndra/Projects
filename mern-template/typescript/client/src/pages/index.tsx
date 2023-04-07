@@ -1,31 +1,39 @@
 import { MovieCard } from "@/components/movie/MovieCard";
 import { IMovie } from "@/interfaces/movie";
 import Head from "next/head";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
-export default function Home(): JSX.Element {
-  const [movies, setMovies] = useState<IMovie[]>([]);
 
+export async function getStaticProps() {
+  
+  const response = await fetch (`http://localhost:7070/api/movies?limit=12`);
+  const data = await response.json();
+  return {
+    props: { movies:data },
+  };
+}
+
+export default function Home({movies : data} : {movies : IMovie[]}): JSX.Element {
+
+  const [movies, setMovies] = useState<IMovie[]>(data);
   const [ordering, setOrdering] = useState<string>("");
-
   const [filtering, setFiltering] = useState<string>("");
-
   const [pageSize, setPageSize] = useState(12);
-
   const [currentPage, setCurrentPage] = useState(1);
-
   const [q, setQ] = useState("")
-  
-  const [searchedQ, setSearchedQ] = useState("")
-
-  
+  const [searchedQ, setSearchedQ] = useState("");
+  const rendered = useRef(false);
 
   useEffect(() => {
-    fetch(`http://localhost:7070/api/movies?limit=${pageSize}&ordering=${ordering}&filtering=${filtering}&q=${searchedQ}`)
+    if(rendered.current){
+      fetch(`http://localhost:7070/api/movies?limit=${pageSize}&ordering=${ordering}&filtering=${filtering}&q=${searchedQ}`)
       .then((res) => res.json())
       .then((data) => {
         setMovies(data);
       });
+    }
+    if(!rendered.current) rendered.current= true;
+    
   }, [ordering, filtering, pageSize, searchedQ]);
 
   return (
@@ -63,16 +71,30 @@ export default function Home(): JSX.Element {
             >
               <option value="">All</option>
               <option value="Action">Action</option>
-              <option value="Horror">Horror</option>
-              <option value="Comedy">Comedy</option>
+              <option value="Adventure">Adventure</option>
               <option value="Animation">Animation</option>
-              <option value="Family">Family</option>
-              <option value="Drama">Drama</option>
+              <option value="Biography">Biography</option>
+              <option value="Comedy">Comedy</option>
               <option value="Crime">Crime</option>
+              <option value="Documentary">Documentary</option>
+              <option value="Drama">Drama</option>
+              <option value="Family">Family</option>
+              <option value="Fantasy">Fantasy</option>
+              <option value="Film-Noir">Film-Noir</option>
+              <option value="History">History</option>
+              <option value="Horror">Horror</option>
+              <option value="Music">Music</option>
+              <option value="Musical">Musical</option>
               <option value="Mystery">Mystery</option>
+              <option value="News">News</option>
               <option value="Romance">Romance</option>
+              <option value="Sci-Fi">Sci-Fi</option>
+              <option value="Short">Short</option>
+              <option value="Sport">Sport</option>
+              <option value="Talk-Show">Talk-Show</option>
               <option value="War">War</option>
               <option value="Thriller">Thriller</option>
+              <option value="Western">Western</option>
             </select>
 
             <div className="relative w-full">
