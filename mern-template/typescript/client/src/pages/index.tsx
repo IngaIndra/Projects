@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from "react";
 
 export async function getStaticProps() {
   
-  const response = await fetch (`http://localhost:7070/api/movies?limit=12`);
+  const response = await fetch (`${process.env.PUBLIC_API_URL}/movies?limit=12`);
   const data = await response.json();
   return {
     props: { movies:data },
@@ -26,7 +26,7 @@ export default function Home({movies : data} : {movies : IMovie[]}): JSX.Element
 
   useEffect(() => {
     if(rendered.current){
-      fetch(`http://localhost:7070/api/movies?limit=${pageSize}&ordering=${ordering}&filtering=${filtering}&q=${searchedQ}`)
+      fetch(`${process.env.PUBLIC_API_URL}/movies?limit=${pageSize}&ordering=${ordering}&filtering=${filtering}&q=${searchedQ}`)
       .then((res) => res.json())
       .then((data) => {
         setMovies(data);
@@ -109,7 +109,7 @@ export default function Home({movies : data} : {movies : IMovie[]}): JSX.Element
                 <button onClick={():void => {
                   setSearchedQ(q);
                 }} type="submit" className="absolute top-0 right-0 p-2.5 text-sm font-medium text-white bg-blue-700 rounded-r-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                  <svg aria-hidden="true" className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                  <svg aria-hidden="true" className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
                   <span className="sr-only">Search</span>
                 </button>
             </div>
