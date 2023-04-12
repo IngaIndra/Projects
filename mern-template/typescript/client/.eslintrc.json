@@ -1,5 +1,5 @@
 {
-  "ignorePatterns": ["**.config.js"],
+  "ignorePatterns": ["**.config.js", "**.config.mjs"],
   "parser": "@typescript-eslint/parser",
   "extends": [
     "plugin:@next/next/recommended",

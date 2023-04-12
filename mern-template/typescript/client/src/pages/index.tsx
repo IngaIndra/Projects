@@ -1,21 +1,25 @@
 import { MovieCard } from "@/components/movie/MovieCard";
+import { MovieCardSkeleton } from "@/components/movie/MovieCardSkeleton";
+import useLoader from "@/hooks/useLoader";
 import { IMovie } from "@/interfaces/movie";
+import axios from "axios";
+import { nanoid } from "nanoid";
 import Head from "next/head";
 import { useEffect, useRef, useState } from "react";
 
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   
-  const response = await fetch (`${process.env.PUBLIC_API_URL}/movies?limit=12`);
-  const data = await response.json();
+  const response = await axios.get (`${process.env.PUBLIC_API_URL}/movies?limit=12`);
+  const {data} = response;
   return {
-    props: { movies:data },
+    props: { data },
   };
 }
 
 export default function Home({movies : data} : {movies : IMovie[]}): JSX.Element {
 
-  const [movies, setMovies] = useState<IMovie[]>(data);
+  const [films, setFilms] = useState<IMovie[]>(data);
   const [ordering, setOrdering] = useState<string>("");
   const [filtering, setFiltering] = useState<string>("");
   const [pageSize, setPageSize] = useState(12);
@@ -24,12 +28,15 @@ export default function Home({movies : data} : {movies : IMovie[]}): JSX.Element
   const [searchedQ, setSearchedQ] = useState("");
   const rendered = useRef(false);
 
+  const loading = useLoader();
+  const movies= data;
+
   useEffect(() => {
     if(rendered.current){
       fetch(`${process.env.PUBLIC_API_URL}/movies?limit=${pageSize}&ordering=${ordering}&filtering=${filtering}&q=${searchedQ}`)
       .then((res) => res.json())
       .then((data) => {
-        setMovies(data);
+        setFilms(data);
       });
     }
     if(!rendered.current) rendered.current= true;
@@ -136,11 +143,17 @@ export default function Home({movies : data} : {movies : IMovie[]}): JSX.Element
         </div>
           
 
-          <div className="p-4 grid grid-cols-6 gap-4">
-              {movies.map((movie) => (
-                <MovieCard movie={movie} key={movie._id} />
-              ))}
+        <div className="p-4 grid gap-4 md:grid-cols-6 sm:grid-cols-4 grid-cols-2">
+              {!loading
+                ? movies.map((movie) => (
+                    <MovieCard movie={movie} key={movie._id} />
+                  ))
+                : Array.from(Array(Number(12)), () => (
+                    <MovieCardSkeleton key={nanoid()} />
+                  ))}
             </div>
+            
+        
         </div>
       </div>
     </>
