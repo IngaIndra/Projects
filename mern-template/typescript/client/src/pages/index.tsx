@@ -2,7 +2,7 @@ import { MovieCard } from "@/components/movie/MovieCard";
 import { IMovie } from "@/interfaces/movie";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import axios from "axios";
+// import axios from "axios";
 import { GetServerSidePropsContext } from "next";
 import useLoader from "@/hooks/useLoader";
 import genres from "../../utils/movieGenres"
@@ -17,7 +17,7 @@ import { Select } from "@/components/ui/Select";
 
 
 
-export async function getServerSideProps(context: GetServerSidePropsContext) {
+export  function getServerSideProps(context: GetServerSidePropsContext) {
   const {query} = context;
   const {ordering,filtering,pageSize,currentPage,q} = query;
   const stringified = queryString.stringify({
@@ -27,10 +27,10 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     skip: (Number(currentPage)-1)*Number(pageSize),
     q
   });
-  const response = await axios.get (`${process.env.PUBLIC_API_URL}/movies?${stringified}`);
-  const {data} = response;
+  // const response = await axios.get (`${process.env.PUBLIC_API_URL}/movies?${stringified}`);
+  // const {data} = response;
   return {
-    props: { data },
+    props: { data:[] },
   };
 }
 
@@ -90,7 +90,8 @@ export default function Home({data} : {data : IMovie[] }): JSX.Element {
 
             <form onSubmit={(e)=>{
               e.preventDefault();
-              addQuery({q: e.target.q.value})
+              const form = e.target as HTMLFormElement;
+              addQuery({q: form["q"].value})
             }} className="relative w-full">
               <input defaultValue={q} type="text" name="q" className="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-lg border-gray border-l-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-l-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500" placeholder="Search movies, TV, actors, more..." required />
               <button type="submit" className="absolute top-0 right-0 p-2.5 text-sm font-medium text-white bg-blue-700 rounded-r-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
