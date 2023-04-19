@@ -2,7 +2,7 @@ import { MovieCard } from "@/components/movie/MovieCard";
 import { IMovie } from "@/interfaces/movie";
 import Head from "next/head";
 import { useRouter } from "next/router";
-// import axios from "axios";
+import axios from "axios";
 import { GetServerSidePropsContext } from "next";
 import useLoader from "@/hooks/useLoader";
 import genres from "../../utils/movieGenres"
@@ -17,7 +17,7 @@ import { Select } from "@/components/ui/Select";
 
 
 
-export  function getServerSideProps(context: GetServerSidePropsContext) {
+export async function getServerSideProps(context: GetServerSidePropsContext) {
   const {query} = context;
   const {ordering,filtering,pageSize,currentPage,q} = query;
   const stringified = queryString.stringify({
@@ -27,10 +27,10 @@ export  function getServerSideProps(context: GetServerSidePropsContext) {
     skip: (Number(currentPage)-1)*Number(pageSize),
     q
   });
-  // const response = await axios.get (`${process.env.PUBLIC_API_URL}/movies?${stringified}`);
-  // const {data} = response;
+  const response = await axios.get (`${process.env.PUBLIC_API_URL}/movies?${stringified}`);
+  const {data} = response;
   return {
-    props: { data:[] },
+    props: { data },
   };
 }
 
