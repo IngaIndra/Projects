@@ -17,22 +17,7 @@ import { Select } from "@/components/ui/Select";
 
 
 
-export async function getServerSideProps(context: GetServerSidePropsContext) {
-  const {query} = context;
-  const {ordering,filtering,pageSize,currentPage,q} = query;
-  const stringified = queryString.stringify({
-    ordering,
-    filtering,
-    limit: pageSize,
-    skip: (Number(currentPage)-1)*Number(pageSize),
-    q
-  });
-  const response = await axios.get (`${process.env.PUBLIC_API_URL}/movies?${stringified}`);
-  const {data} = response;
-  return {
-    props: { data },
-  };
-}
+
 
 export default function Home({data} : {data : IMovie[] }): JSX.Element {
   const movies= data;
@@ -135,4 +120,21 @@ export default function Home({data} : {data : IMovie[] }): JSX.Element {
       </div>
     </>
   );
+}
+
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  const {query} = context;
+  const {ordering,filtering,pageSize,currentPage,q} = query;
+  const stringified = queryString.stringify({
+    ordering,
+    filtering,
+    limit: pageSize,
+    skip: (Number(currentPage)-1)*Number(pageSize),
+    q
+  });
+  const response = await axios.get (`${process.env.NEXT_PUBLIC_API_URL}/movies?${stringified}`);
+  const {data} = response;
+  return {
+    props: { data },
+  };
 }
